@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "SearchByTitle";
+}
+
+@model APIProject_MovieAPI.Models.MovieList
+<h1>Search By Title</h1>
+@{
+    if (Model.Response == "True")
+    {
+        <table class="table-dark" style="border-spacing: 15px 2px; border-collapse: separate; border-color: white;">
+            <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Details</th>
+            </tr>
+            @foreach (var movie in Model.Search)
+            {
+                <tr>
+                    <td>@movie.Title</td>
+                    <td>@movie.Year</td>
+                    <td>@Html.ActionLink("Details", "Details", "Movie", movie)</td>
+                    <td>@Html.ActionLink("Add to Favorites", "AddFavorite", "Movie", movie)</td>
+                </tr>
+            }
+
+        </table>
+    }
+    else
+    {
+        <p>No movie matches your search. @Html.ActionLink("Search Again", "Index", "Movie") </p>
+    }
+}

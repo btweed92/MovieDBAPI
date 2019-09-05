@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "FavoriteMovies";
+}
+@model IEnumerable<APIProject_MovieAPI.Models.FavoriteMovies>
+
+<h1>Favorite Movies</h1>
+
+<table class="table-dark" style="border-spacing: 15px 2px; border-collapse: separate; border-color: white;">
+    <tr>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Rated</th>
+        <th>Runtime</th>
+        <th>Director</th>
+        <th>Genre</th>
+    </tr>
+    @{ foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.Year</td>
+                <td>@movie.Rated</td>
+                <td>@movie.Runtime</td>
+                <td>@movie.Director</td>
+                <td>@movie.Genre</td>
+                <td>@Html.ActionLink("Remove From List", "DeleteFavorite", "Movie", movie)</td>
+            </tr>
+        }
+    }
+</table>
